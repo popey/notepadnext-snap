@@ -1,0 +1,100 @@
+name: notepadnext
+base: core22
+version: 'v0.7'
+summary: A cross-platform, reimplementation of Notepad++
+description: |
+  Notepad Next is yet another text and source code editor.
+
+grade: stable
+confinement: classic
+
+contact: https://github.com/dail8859/NotepadNext
+issues: https://github.com/dail8859/NotepadNext/issues
+website: https://github.com/dail8859/NotepadNext
+license: GPL-3.0
+
+apps:
+  notepadnext:
+    command: usr/bin/NotepadNext
+    common-id: com.github.dail8859.NotepadNext
+    # environment:
+    #   __EGL_VENDOR_LIBRARY_DIRS: "$SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d"
+    #   LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/${CRAFT_ARCH_TRIPLET}/dri"
+
+assumes:
+  - snapd2.55.3
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+
+parts:
+  # mesa-no-patchelf:
+  #   after: []
+  #   plugin: nil
+  #   build-attributes:
+  #     - no-patchelf
+  #   build-packages: []
+  #   stage-packages:
+  #     - libgl1-mesa-dri
+  #     - libglx-mesa0
+  #   prime:
+  #     - "-lib/udev"
+  #     - "-usr/doc"
+  #     - "-usr/doc-base"
+  #     - "-usr/share/applications"
+  #     - "-usr/share/apport"
+  #     - "-usr/share/bug"
+  #     - "-usr/share/doc"
+  #     - "-usr/share/doc-base"
+  #     - "-usr/share/icons"
+  #     - "-usr/share/libdrm"
+  #     - "-usr/share/libwacom"
+  #     - "-usr/share/lintian"
+  #     - "-usr/share/man"
+  #     - "-usr/share/pkgconfig"
+  notepadnext:
+    # after: [mesa-no-patchelf]
+    plugin: nil
+    source: https://github.com/dail8859/NotepadNext.git
+    source-type: git
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
+    build-attributes:
+      - enable-patchelf
+    override-pull: |
+      git clone --recurse-submodules https://github.com/dail8859/NotepadNext.git
+    override-build: |
+      cd NotepadNext
+      qmake src/NotepadNext.pro
+      make
+      make install INSTALL_ROOT=$SNAPCRAFT_PART_INSTALL
+    build-packages:
+      - make
+      - build-essential
+      - qtbase5-private-dev
+      - qttools5-dev-tools
+      - qt5-qmake
+      - pkg-config
+      - qtbase5-dev
+      - qttools5-dev
+      - libqt5x11extras5-dev
+    stage-packages:
+      - libgl1
+      - libglx0
+      - libglvnd0
+      - libqt5core5a
+      - libqt5gui5
+      - libqt5network5
+      - libqt5printsupport5
+      - libqt5widgets5
+      - libx11-6
+      - libxau6
+      - libxdmcp6
+      - libdouble-conversion3
+      - libgraphite2-3
+      - libharfbuzz0b
+      - libicu70
+      - libmd4c0
+      - libpcre2-16-0
+      - libxcb1

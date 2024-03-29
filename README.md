@@ -1,0 +1,1 @@
+# Notepad Next snap

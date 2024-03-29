@@ -1,0 +1,10 @@
+[Desktop Entry]
+Exec=notepadnext %f
+Comment=A cross-platform, reimplementation of Notepad++
+Type=Application
+Icon=${SNAP}/snap/gui/notepadnext.svg
+Name=Notepad Next
+StartupNotify=true
+Terminal=false
+Categories=Qt;TextEditor;Utility;
+MimeType=text/plain;
