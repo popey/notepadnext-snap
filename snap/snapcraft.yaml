@@ -17,9 +17,9 @@ apps:
   notepadnext:
     command: usr/bin/NotepadNext
     common-id: com.github.dail8859.NotepadNext
-    # environment:
-    #   __EGL_VENDOR_LIBRARY_DIRS: "$SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d"
-    #   LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/${CRAFT_ARCH_TRIPLET}/dri"
+    environment:
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH"
+      LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/dri:$LIBGL_DRIVERS_PATH"
 
 assumes:
   - snapd2.55.3
@@ -30,32 +30,32 @@ architectures:
   - build-on: armhf
 
 parts:
-  # mesa-no-patchelf:
-  #   after: []
-  #   plugin: nil
-  #   build-attributes:
-  #     - no-patchelf
-  #   build-packages: []
-  #   stage-packages:
-  #     - libgl1-mesa-dri
-  #     - libglx-mesa0
-  #   prime:
-  #     - "-lib/udev"
-  #     - "-usr/doc"
-  #     - "-usr/doc-base"
-  #     - "-usr/share/applications"
-  #     - "-usr/share/apport"
-  #     - "-usr/share/bug"
-  #     - "-usr/share/doc"
-  #     - "-usr/share/doc-base"
-  #     - "-usr/share/icons"
-  #     - "-usr/share/libdrm"
-  #     - "-usr/share/libwacom"
-  #     - "-usr/share/lintian"
-  #     - "-usr/share/man"
-  #     - "-usr/share/pkgconfig"
+  mesa-no-patchelf:
+    after: []
+    plugin: nil
+    build-attributes:
+      - no-patchelf
+    build-packages: []
+    stage-packages:
+      - libgl1-mesa-dri
+      - libglx-mesa0
+    prime:
+      - "-lib/udev"
+      - "-usr/doc"
+      - "-usr/doc-base"
+      - "-usr/share/applications"
+      - "-usr/share/apport"
+      - "-usr/share/bug"
+      - "-usr/share/doc"
+      - "-usr/share/doc-base"
+      - "-usr/share/icons"
+      - "-usr/share/libdrm"
+      - "-usr/share/libwacom"
+      - "-usr/share/lintian"
+      - "-usr/share/man"
+      - "-usr/share/pkgconfig"
   notepadnext:
-    # after: [mesa-no-patchelf]
+    after: [mesa-no-patchelf]
     plugin: nil
     source: https://github.com/dail8859/NotepadNext.git
     source-type: git
@@ -98,3 +98,6 @@ parts:
       - libmd4c0
       - libpcre2-16-0
       - libxcb1
+    prime:
+      - "-usr/lib/*/*mesa*"
+      - "-usr/lib/*/dri"
