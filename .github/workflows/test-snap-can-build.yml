@@ -19,4 +19,4 @@ jobs:
       - uses: diddlesnaps/snapcraft-review-action@v1
         with:
           snap: ${{ steps.build.outputs.snap }}
-          isClassic: 'false'
+          isClassic: 'true'
