@@ -18,8 +18,3 @@ jobs:
           version: '6.5'
           modules: 'qt5compat'
           cache: true
-      - name: Build snap
-        run: |
-          sudo snap install snapcraft --classic
-          snapcraft --version
-          snapcraft --destructive-mode
