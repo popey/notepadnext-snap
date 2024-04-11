@@ -66,7 +66,7 @@ parts:
       git clone --recurse-submodules https://github.com/dail8859/NotepadNext.git
     override-build: |
       cd NotepadNext
-      qmake src/NotepadNext.pro
+      qmake src/NotepadNext.pro "DISTRIBUTION=Snap"
       make
       make install INSTALL_ROOT=$SNAPCRAFT_PART_INSTALL
     build-packages:
