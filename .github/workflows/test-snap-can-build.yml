@@ -1,10 +1,13 @@
-name: 🧪 Test snap can be built on x86_64
+name: 🧪 Test snap can be built on x86_64 for Qt 6
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+env:
+  QT_RELEASE_VER: 6.5
     
 jobs:
   build:
@@ -12,11 +15,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - uses: snapcore/action-build@v1
-        id: build
-
-      - uses: diddlesnaps/snapcraft-review-action@v1
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
         with:
-          snap: ${{ steps.build.outputs.snap }}
-          isClassic: 'true'
+          version: "6.5"
+          modules: "qt5compat"
+          cache: true
+
+     - name: Build snap
+        run: |
+          sudo snap install snapcraft --classic
+          snapcraft --destructive-mode

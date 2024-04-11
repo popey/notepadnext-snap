@@ -72,22 +72,22 @@ parts:
     build-packages:
       - make
       - build-essential
-      - qtbase5-private-dev
-      - qttools5-dev-tools
-      - qt5-qmake
+      #- qtbase5-private-dev
+      #- qttools5-dev-tools
+      #- qt5-qmake
       - pkg-config
-      - qtbase5-dev
-      - qttools5-dev
-      - libqt5x11extras5-dev
+      #- qtbase5-dev
+      #- qttools5-dev
+      #- libqt5x11extras5-dev
     stage-packages:
       - libgl1
       - libglx0
       - libglvnd0
-      - libqt5core5a
-      - libqt5gui5
-      - libqt5network5
-      - libqt5printsupport5
-      - libqt5widgets5
+      #- libqt5core5a
+      #- libqt5gui5
+      #- libqt5network5
+      #- libqt5printsupport5
+      #- libqt5widgets5
       - libx11-6
       - libxau6
       - libxdmcp6
