@@ -21,4 +21,5 @@ jobs:
       - name: Build snap
         run: |
           sudo snap install snapcraft --classic
+          snapcraft --version
           snapcraft --destructive-mode
