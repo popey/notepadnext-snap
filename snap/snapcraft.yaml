@@ -21,6 +21,7 @@ apps:
       LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH"
       LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/dri:$LIBGL_DRIVERS_PATH"
       DISABLE_WAYLAND: 1
+      __EGL_VENDOR_LIBRARY_DIRS: "$SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d"
 
 assumes:
   - snapd2.55.3
@@ -80,6 +81,8 @@ parts:
       - qtbase5-dev
       - qttools5-dev
       - libqt5x11extras5-dev
+      - libqt5waylandclient5-dev
+      - libqt5waylandcompositor5-dev
     stage-packages:
       - libgl1
       - libglx0
