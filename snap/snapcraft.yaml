@@ -98,6 +98,7 @@ parts:
       - libmd4c0
       - libpcre2-16-0
       - libxcb1
+      - qtwayland5
     prime:
       - "-usr/lib/*/*mesa*"
       - "-usr/lib/*/dri"
