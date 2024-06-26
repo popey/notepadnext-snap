@@ -1,6 +1,6 @@
 name: notepadnext
 base: core22
-version: 'v0.7'
+version: 'v0.8'
 summary: A cross-platform, reimplementation of Notepad++
 description: |
   Notepad Next is yet another text and source code editor.
