@@ -20,6 +20,7 @@ apps:
     environment:
       LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH"
       LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/dri:$LIBGL_DRIVERS_PATH"
+      DISABLE_WAYLAND: 1
 
 assumes:
   - snapd2.55.3
