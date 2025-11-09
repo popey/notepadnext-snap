@@ -1,5 +1,5 @@
 name: notepadnext
-base: core22
+base: core24
 version: "v0.12"
 summary: A cross-platform, reimplementation of Notepad++
 description: |
@@ -25,11 +25,6 @@ apps:
 
 assumes:
   - snapd2.55.3
-
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
 
 parts:
   mesa-no-patchelf:
@@ -98,11 +93,12 @@ parts:
       - libdouble-conversion3
       - libgraphite2-3
       - libharfbuzz0b
-      - libicu70
+      - libicu74
       - libmd4c0
       - libpcre2-16-0
       - libxcb1
       - qtwayland5
+      - qgnomeplatform-qt5
     prime:
       - "-usr/lib/*/*mesa*"
       - "-usr/lib/*/dri"
