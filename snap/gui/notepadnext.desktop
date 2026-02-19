@@ -2,7 +2,7 @@
 Exec=notepadnext %f
 Comment=A cross-platform, reimplementation of Notepad++
 Type=Application
-Icon=${SNAP}/snap/gui/notepadnext.svg
+Icon=${SNAP}/meta/gui/notepadnext.svg
 Name=Notepad Next
 StartupNotify=true
 Terminal=false
