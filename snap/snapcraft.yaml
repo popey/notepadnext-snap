@@ -1,6 +1,6 @@
 name: notepadnext
 base: core24
-version: "v0.12"
+version: "v0.13"
 summary: A cross-platform, reimplementation of Notepad++
 description: |
   Notepad Next is yet another text and source code editor.
@@ -22,6 +22,7 @@ apps:
       LIBGL_DRIVERS_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/dri:$LIBGL_DRIVERS_PATH"
       DISABLE_WAYLAND: 1
       __EGL_VENDOR_LIBRARY_DIRS: "$SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d"
+      QT_PLUGIN_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/qt6/plugins"
 
 assumes:
   - snapd2.55.3
@@ -58,35 +59,37 @@ parts:
     source-type: git
     source-tag: $SNAPCRAFT_PROJECT_VERSION
     build-attributes:
-      - enable-patchelf
+      - no-patchelf
     override-pull: |
-      git clone --recurse-submodules https://github.com/dail8859/NotepadNext.git
+      git clone --recurse-submodules --branch $SNAPCRAFT_PROJECT_VERSION \
+        https://github.com/dail8859/NotepadNext.git
     override-build: |
       cd NotepadNext
-      qmake src/NotepadNext.pro "DISTRIBUTION=Snap"
-      make
+      qmake6 src/NotepadNext.pro "DISTRIBUTION=Snap"
+      make -j$(nproc)
       make install INSTALL_ROOT=$SNAPCRAFT_PART_INSTALL
     build-packages:
       - make
       - build-essential
-      - qtbase5-private-dev
-      - qttools5-dev-tools
-      - qt5-qmake
+      - qt6-base-dev
+      - qt6-base-private-dev
+      - qt6-tools-dev
+      - qt6-tools-dev-tools
+      - qmake6
       - pkg-config
-      - qtbase5-dev
-      - qttools5-dev
-      - libqt5x11extras5-dev
-      - libqt5waylandclient5-dev
-      - libqt5waylandcompositor5-dev
+      - qt6-5compat-dev
+      - libxkbcommon-dev
+      - libxcb-cursor-dev
+      - libcups2-dev
     stage-packages:
       - libgl1
       - libglx0
       - libglvnd0
-      - libqt5core5a
-      - libqt5gui5
-      - libqt5network5
-      - libqt5printsupport5
-      - libqt5widgets5
+      - libqt6core6t64
+      - libqt6gui6t64
+      - libqt6network6t64
+      - libqt6printsupport6t64
+      - libqt6widgets6t64
       - libx11-6
       - libxau6
       - libxdmcp6
@@ -97,8 +100,12 @@ parts:
       - libmd4c0
       - libpcre2-16-0
       - libxcb1
-      - qtwayland5
-      - qgnomeplatform-qt5
+      - qt6-wayland
+      - qt6-qpa-plugins
+      - libxcb-cursor0
+      - libxkbcommon0
+      - libxkbcommon-x11-0
+      - libqt6core5compat6
     prime:
       - "-usr/lib/*/*mesa*"
       - "-usr/lib/*/dri"
