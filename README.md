@@ -1,8 +1,8 @@
 # Notepad Next snap
 
-[![classicube](https://github.com/popey/notepadnext-snap/actions/workflows/test-snap-can-build.yml/badge.svg)](https://github.com/popey/notepadnext-snap/actions)
-[![classicube](https://snapcraft.io/notepadnext/badge.svg)](https://snapcraft.io/notepadnext)
-[![classicube](https://snapcraft.io/notepadnext/trending.svg?name=0)](https://snapcraft.io/notepadnext)
+[![notepadnext](https://github.com/popey/notepadnext-snap/actions/workflows/test-snap-can-build.yml/badge.svg)](https://github.com/popey/notepadnext-snap/actions)
+[![notepadnext](https://snapcraft.io/notepadnext/badge.svg)](https://snapcraft.io/notepadnext)
+[![notepadnext](https://snapcraft.io/notepadnext/trending.svg?name=0)](https://snapcraft.io/notepadnext)
 
 Notepad Next is yet another text and source code editor.
 
