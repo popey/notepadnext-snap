@@ -20,8 +20,14 @@ jobs:
 
       - name: Get latest version from upstream
         id: latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST_VERSION=$(curl -sL https://api.github.com/repos/dail8859/NotepadNext/releases/latest | jq -r '.tag_name')
+          LATEST_VERSION=$(gh release view --repo dail8859/NotepadNext --json tagName -q '.tagName')
+          if [ -z "$LATEST_VERSION" ] || [ "$LATEST_VERSION" = "null" ]; then
+            echo "::error::Failed to fetch latest version from GitHub API"
+            exit 1
+          fi
           echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
           echo "Latest upstream version: $LATEST_VERSION"
 
