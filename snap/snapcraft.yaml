@@ -65,17 +65,20 @@ parts:
         https://github.com/dail8859/NotepadNext.git
     override-build: |
       cd NotepadNext
-      qmake6 src/NotepadNext.pro "DISTRIBUTION=Snap"
-      make -j$(nproc)
-      make install INSTALL_ROOT=$SNAPCRAFT_PART_INSTALL
+      cmake -S . -B build -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DAPP_DISTRIBUTION=Snap
+      cmake --build build -j"$(nproc)"
+      DESTDIR="$SNAPCRAFT_PART_INSTALL" cmake --install build
     build-packages:
-      - make
       - build-essential
+      - cmake
+      - ninja-build
       - qt6-base-dev
       - qt6-base-private-dev
       - qt6-tools-dev
       - qt6-tools-dev-tools
-      - qmake6
       - pkg-config
       - qt6-5compat-dev
       - libxkbcommon-dev
