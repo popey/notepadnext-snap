@@ -65,6 +65,8 @@ parts:
         https://github.com/dail8859/NotepadNext.git
     override-build: |
       cd NotepadNext
+      # Upstream packaging searches for qmake, but Ubuntu names it qmake6.
+      export QMAKE="$(command -v qmake6)"
       cmake -S . -B build -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=/usr \
