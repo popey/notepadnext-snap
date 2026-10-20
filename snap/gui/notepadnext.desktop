@@ -5,6 +5,7 @@ Type=Application
 Icon=${SNAP}/meta/gui/notepadnext.svg
 Name=Notepad Next
 StartupNotify=true
+StartupWMClass=NotepadNext
 Terminal=false
 Categories=Qt;TextEditor;Utility;
 MimeType=text/plain;
